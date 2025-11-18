@@ -11,35 +11,40 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ---------------------------------------------------------------------- */
-        /* --- 🎨 PALETA DE CORES: CLEAN & ROSE GOLD (Salão Feminino) --- */
+        /* --- 🎨 PALETA DE CORES: ROSE GOLD & BEGE/PÊSSEGO CLARO (Final V2) --- */
         /* ---------------------------------------------------------------------- */
         :root {
-            --bg-light: #F9F4F4; /* Fundo principal claro (Creme/Pêssego muito suave) */
-            --bg-card: #EDEDED; /* Fundo sutil para cards de serviço */
+            /* Fundo principal claro (Rosa Pêssego / Rosa Bege) */
+            --bg-light: #FAF0E6; 
+            /* Fundo sutil para cards de serviço e modal */
+            --bg-card: #F5EBE0; 
             --text-dark: #333333; /* Cor do texto principal (Preto/Grafite) */
             --text-secondary: #555555; /* Cor do texto secundário */
 
-            /* Cor de Destaque Rose Gold (Gradiente para efeito metálico nos botões) */
-            --rose-gold-start: #F7CAC9; /* Rosa Claro/Pêssego */
-            --rose-gold-end: #CC737A; /* Rosa Mais Escuro/Cobre */
-
-            /* Cor para Borda/Acentos e Preços no Texto */
+            /* Cor de Destaque Rose Gold Claro (Acento) */
             --primary-accent: #CC737A; 
+
+            /* Gradiente de Destaque para Botões (Efeito Metálico Rose Gold) */
+            --gradient-start: #F7CAC9; /* Rosa Claro/Pêssego */
+            --gradient-end: #CC737A; /* Rosa Mais Escuro/Cobre */
+            
+            /* Cor do texto do botão (preto/grafite, para contraste no Rose Gold) */
+            --btn-text-color: #333333;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark); /* Texto escuro no fundo claro */
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
         }
         
         /* Estilização padrão para o botão Rose Gold */
         .primary-btn {
             /* Usa o gradiente Rose Gold como fundo */
-            background: linear-gradient(145deg, var(--rose-gold-start), var(--rose-gold-end));
-            color: var(--text-dark); /* Cor do texto deve ser escura para contraste */
+            background: linear-gradient(145deg, var(--gradient-start), var(--gradient-end));
+            color: var(--btn-text-color); 
             transition: all 0.2s ease-in-out; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.15); /* Sombra mais suave */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
             font-weight: 700; 
             -webkit-tap-highlight-color: transparent;
         }
@@ -52,7 +57,7 @@
         /* Efeito de clique/toque ATIVO */
         .primary-btn:active {
             transform: scale(0.98); 
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.15);
         }
 
         /* Animação de entrada da Landing Page */
@@ -66,33 +71,17 @@
             transition: opacity 1s ease-out, transform 0.8s ease-out;
         }
         
-        /* Estilo para a imagem principal */
-        .image-container {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            overflow: hidden;
-            border-radius: 1.5rem; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra mais suave */
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
         /* Estilo para o item de PREÇO (SERVIÇOS) */
         .service-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0.75rem 1rem;
-            background-color: var(--bg-card); /* Fundo sutil */
+            background-color: var(--bg-light); /* Item de serviço com o fundo principal claro */
             border-radius: 0.5rem;
             /* Usa a cor de destaque principal aqui */
             border-left: 4px solid var(--primary-accent);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra leve */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
         }
         
         /* --- ANIMAÇÃO PARA OS ITENS DO MODAL --- */
@@ -122,28 +111,33 @@
             letter-spacing: 0.05em;
         }
 
-        /* Estilo para o contêiner da Logo (circunferência externa) */
+        /* ---------------------------------------------------------------------- */
+        /* --- CORREÇÃO DA LOGO: FUNDO DA LOGO SEGUINDO O BEGE PRINCIPAL --- */
+        /* ---------------------------------------------------------------------- */
         #logo-container {
             border-radius: 50%; 
-            background-color: white; /* Fundo interno branco */
+            background-color: var(--bg-light); /* Fundo do container da logo agora é o mesmo do corpo */
             border: 4px solid var(--primary-accent); 
             padding: 4px;
             display: inline-block;
-            box-shadow: 0 0 15px rgba(204, 115, 122, 0.3); 
+            box-shadow: 0 0 10px rgba(204, 115, 122, 0.5); /* Sombra Rose Gold */
+            width: 136px; 
+            height: 136px; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
         }
         
         #main-logo {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            object-fit: contain; 
-            background-color: white; 
-            padding: 8px; 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; 
+            object-fit: cover; 
         }
         
-        /* Cor de fundo do Modal, agora mais clara */
+        /* Cor de fundo do Modal */
         #prices-modal > div {
-            background-color: white; 
+            background-color: var(--bg-card); /* Fundo do modal sutilmente mais claro */
             color: var(--text-dark);
         }
 
@@ -157,11 +151,11 @@
         <!-- 1. Cabeçalho e Logo -->
         <header class="text-center mb-12">
             
-            <!-- LOGO: Rayane Oliveira (RO) -->
+            <!-- LOGO: Rayane Oliveira -->
             <div class="mb-3 mx-auto" id="logo-container">
                 <!-- Por favor, renomeie o arquivo da logo para 'logo_rayane.png' -->
                 <img id="main-logo" src="./logo_rayane.png" alt="Logo Rayane Oliveira" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/128x128/FFFFFF/CC737A?text=RO+LOGO';"
+                     onerror="this.onerror=null; this.src='https://placehold.co/128x128/CC737A/F5EBE0?text=LOGO';"
                      title="Logo Rayane Oliveira"
                      loading="lazy" decoding="async">
             </div>
@@ -170,7 +164,7 @@
             <h1 id="main-name" class="text-4xl tracking-widest" style="color: var(--primary-accent);"> 
                 Rayane Oliveira
             </h1>
-            <!-- Subtítulo com a cor de destaque Rose Gold -->
+            <!-- Subtítulo: MANTIDO "ESPAÇO DE BELEZA" -->
             <p class="text-sm font-light uppercase mt-1 tracking-wide" style="color: var(--primary-accent);">
                 ESPAÇO DE BELEZA
             </p>
@@ -209,24 +203,15 @@
 
         </main>
         
-        <!-- 3. Imagem de Destaque -->
-        <section class="mt-12">
-            <div class="image-container">
-                <!-- Por favor, renomeie o arquivo da foto do ambiente para 'rayane_ambiente.png' -->
-                <img src="./rayane_ambiente.png" 
-                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/EDEDED/CC737A?text=FOTO+DO+AMBIENTE';"
-                     alt="Imagem do ambiente interno da Rayane Oliveira."
-                     loading="lazy" decoding="async"> 
-            </div>
-        </section>
-
+        <!-- 3. Seção de Imagem de Destaque REMOVIDA conforme solicitado -->
+        
     </div>
 
     <!-- Modal/Seção de Tabela de Preços e Produtos -->
     <div id="prices-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-start justify-center p-4 overflow-y-auto">
         
-        <!-- Cor de fundo do modal ajustada para branco/claro -->
-        <div class="w-full max-w-xl mx-auto my-8 p-6 sm:p-8 rounded-xl shadow-2xl relative" style="background-color: white; color: var(--text-dark);">
+        <!-- Cor de fundo do modal ajustada para a cor do Card -->
+        <div class="w-full max-w-xl mx-auto my-8 p-6 sm:p-8 rounded-xl shadow-2xl relative" style="background-color: var(--bg-card); color: var(--text-dark);">
             <!-- Botão de Fechar -->
             <button onclick="closePricesModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black transition duration-200">
                 <i data-lucide="x" class="w-8 h-8"></i>
@@ -331,6 +316,7 @@
             });
         }
 
+
         // Função para preencher a lista de serviços
         function renderPrices() {
             // Apenas a lista de serviços é renderizada, pois as outras listas estão vazias
@@ -393,3 +379,4 @@
     </script>
 </body>
 </html>
+
