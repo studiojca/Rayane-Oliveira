@@ -115,13 +115,13 @@
         100% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
     }
 
-    /* ESTILO PARA A NOVA IMAGEM DA LOGO NO CABEÇALHO */
-    #main-logo-image {
+    /* ESTILO PARA A IMAGEM RETANGULAR DA LOGO */
+    #main-logo-banner {
         width: 100%;
-        max-width: 250px; /* Ajuste conforme necessário */
+        max-width: 250px; 
         height: auto;
-        margin: 0 auto; /* Centraliza */
-        padding-bottom: 1rem; /* Espaçamento abaixo da logo */
+        margin: 0 auto; 
+        padding-top: 0.5rem; /* Espaçamento entre o círculo e o banner */
     }
 
 </style>
@@ -130,16 +130,28 @@
 
 <div class="w-full max-w-sm">
 
-    <!-- CABEÇALHO (NOVA IMAGEM DA LOGO PRINCIPAL) --><header id="main-header" class="text-center mb-10 fade-in-up">
-        <!-- NOVA LOGO COMO IMAGEM ÚNICA --><img id="main-logo-image" 
-             src="./rayane_oliveira_logo_text.png" 
-             onerror="this.onerror=null;this.src='https://placehold.co/250x100/d7b27c/ffffff?text=RAYANE+OLIVEIRA';"
+    <!-- CABEÇALHO (CIRCULO + BANNER PNG) -->
+    <header id="main-header" class="text-center mb-10 fade-in-up">
+        
+        <!-- 1. Círculo (Logo Secundária/Ícone) -->
+        <img src="./logo_rayane.png" 
+             onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" 
+             class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]"
+             loading="lazy" decoding="async"
+             alt="Monograma Rayane Oliveira">
+             
+        <!-- 2. Banner PNG Retangular (Nome Principal e Tipografia) -->
+        <!-- O arquivo deve ser transparente para funcionar bem com o fundo! -->
+        <img id="main-logo-banner" 
+             src="./rayane_oliveira_name_banner.png" 
+             onerror="this.onerror=null;this.src='https://placehold.co/250x70/d7b27c/ffffff?text=NOME+AQUI';"
              alt="Logo Rayane Oliveira Espaço de Beleza" 
              title="Rayane Oliveira"
              loading="lazy" decoding="async">
     </header>
 
-    <!-- BOTÕES PRINCIPAIS --><main id="main-actions" class="grid grid-cols-2 gap-4 mb-10 fade-in-up">
+    <!-- BOTÕES PRINCIPAIS -->
+    <main id="main-actions" class="grid grid-cols-2 gap-4 mb-10 fade-in-up">
         <a id="whatsapp-link" href="#" target="_blank" class="btn-premium">
             <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i> Agendar
         </a>
@@ -157,7 +169,8 @@
         </a>
     </main>
 
-    <!-- FOTO PRINCIPAL --><img id="hero-img" 
+    <!-- FOTO PRINCIPAL -->
+    <img id="hero-img" 
          class="glow-gold fade-in-up" 
          src="./rayane_photo.jpg" 
          onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" 
@@ -166,7 +179,8 @@
          loading="lazy" decoding="async">
 </div>
 
-<!-- MODAL --><div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
+<!-- MODAL -->
+<div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
     <div class="bg-[var(--card)] w-full max-w-xl p-6 rounded-xl relative shadow-2xl mt-10">
         <button onclick="closePrices()" class="absolute top-4 right-4">
             <i data-lucide="x" class="w-7 h-7 text-black"></i>
@@ -175,7 +189,8 @@
         <h2 class="text-center title-font text-4xl font-bold mb-6 text-[var(--gold)]">TABELA DE PREÇOS</h2>
 
         <div id="services" class="space-y-3">
-            <!-- Os itens de serviço serão injetados aqui com animação em cascata --></div>
+            <!-- Os itens de serviço serão injetados aqui com animação em cascata -->
+        </div>
 
         <div class="text-center mt-8">
             <a id="whatsapp-modal" href="#" target="_blank" class="btn-premium px-8 py-3 inline-flex text-lg">
@@ -257,7 +272,7 @@
     // Lógica de Animação de Entrada da Landing Page (Staggered Fade-In)
     document.addEventListener('DOMContentLoaded', () => {
         const mainSections = [
-            document.getElementById("main-header"),
+            document.getElementById("main-header"), // Anima o cabeçalho completo (círculo + banner)
             document.getElementById("main-actions"),
             document.getElementById("hero-img")
         ];
