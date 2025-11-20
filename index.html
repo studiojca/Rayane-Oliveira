@@ -121,7 +121,8 @@
         max-width: 250px; 
         height: auto;
         margin: 0 auto; 
-        padding-top: 0.5rem; /* Espaçamento entre o círculo e o banner */
+        /* Corrigido o espaçamento para aproximar do círculo */
+        padding-top: 0; 
     }
 
 </style>
@@ -131,9 +132,11 @@
 <div class="w-full max-w-sm">
 
     <!-- CABEÇALHO (CIRCULO + BANNER PNG) -->
-    <header id="main-header" class="text-center mb-10 fade-in-up">
+    <!-- Ajustado mb-10 para mb-6 para diminuir o espaço total do cabeçalho -->
+    <header id="main-header" class="text-center mb-6 fade-in-up">
         
         <!-- 1. Círculo (Logo Secundária/Ícone) -->
+        <!-- Sem alteração aqui -->
         <img src="./logo_rayane.png" 
              onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" 
              class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]"
@@ -141,7 +144,6 @@
              alt="Monograma Rayane Oliveira">
              
         <!-- 2. Banner PNG Retangular (Nome Principal e Tipografia) -->
-        <!-- O arquivo deve ser transparente para funcionar bem com o fundo! -->
         <img id="main-logo-banner" 
              src="./rayane_oliveira_name_banner.png" 
              onerror="this.onerror=null;this.src='https://placehold.co/250x70/d7b27c/ffffff?text=NOME+AQUI';"
