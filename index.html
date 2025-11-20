@@ -74,17 +74,26 @@
         box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     }
 
-</style>
+/* ANIMAÇÕES PREMIUM */
 
+/* 1. Fade-in + slide suave */ .fade-in-up { opacity: 0; transform: translateY(15px); animation: fadeUp 0.9s ease-out forwards; }
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* 4. Glow dourado suave na imagem */ .glow-gold { animation: goldGlow 4s ease-in-out infinite; }
+
+@keyframes goldGlow { 0% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); } 50% { box-shadow: 0 8px 25px rgba(215,178,124,0.45); } 100% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); } }
+
+</style>
 </head>
-<body class="min-h-screen p-6 flex justify-center"><div class="w-full max-w-sm"><header class="text-center mb-10">
+<body class="min-h-screen p-6 flex justify-center"><div class="w-full max-w-sm"><header class="fade-in-up" class="text-center mb-10">
     <img src="./logo_rayane.png" onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]">
 
     <h1 class="title-font text-5xl mt-4 font-semibold text-[var(--gold)]">Rayane Oliveira</h1>
     <p class="tracking-wide text-sm text-[var(--gold)] mt-1">ESPAÇO DE BELEZA</p>
 </header>
 
-<main class="grid grid-cols-2 gap-4 mb-10">
+<main class="fade-in-up" class="grid grid-cols-2 gap-4 mb-10">
     <a id="whatsapp-link" href="#" target="_blank" class="btn-premium">
         <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i> Agendar
     </a>
@@ -102,7 +111,7 @@
     </a>
 </main>
 
-<img id="hero-img" src="./rayane_photo.jpg" onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" class="w-full object-cover">
+<img id="hero-img" class="glow-gold fade-in-up" src="./rayane_photo.jpg" onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" class="w-full object-cover">
 
 </div><!-- MODAL --><div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
     <div class="bg-[var(--card)] w-full max-w-xl p-6 rounded-xl relative shadow-2xl mt-10">
