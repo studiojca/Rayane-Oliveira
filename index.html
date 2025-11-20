@@ -70,10 +70,12 @@
             font-size: 1.1rem;
         }
 
+        /* CORREÇÃO APLICADA AQUI: Adicionado 'white-space: nowrap' */
         .service-item span:last-child{
             color: var(--gold-light);
             font-size: 1.3rem;
             font-weight: 700;
+            white-space: nowrap; /* Garante que o preço não quebre em duas linhas */
         }
 
         #hero-img{
@@ -121,7 +123,7 @@
         max-width: 250px; 
         height: auto;
         margin: 0 auto; 
-        /* Corrigido o espaçamento para aproximar do círculo */
+        /* Espaçamento ajustado para colar no círculo */
         padding-top: 0; 
     }
 
@@ -132,11 +134,10 @@
 <div class="w-full max-w-sm">
 
     <!-- CABEÇALHO (CIRCULO + BANNER PNG) -->
-    <!-- Ajustado mb-10 para mb-6 para diminuir o espaço total do cabeçalho -->
+    <!-- Espaçamento ajustado para mb-6 -->
     <header id="main-header" class="text-center mb-6 fade-in-up">
         
         <!-- 1. Círculo (Logo Secundária/Ícone) -->
-        <!-- Sem alteração aqui -->
         <img src="./logo_rayane.png" 
              onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" 
              class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]"
@@ -179,6 +180,11 @@
          alt="Foto profissional de Rayane Oliveira"
          title="Foto Rayane Oliveira"
          loading="lazy" decoding="async">
+
+    <!-- RODAPÉ/COPYRIGHT -->
+    <footer class="text-center mt-6 mb-4 text-xs font-light text-gray-500">
+        Rayane Oliveira 2025
+    </footer>
 </div>
 
 <!-- MODAL -->
@@ -219,7 +225,7 @@
     document.getElementById("instagram-link").href = "https://www.instagram.com/rayanne.oliveira9?igsh=MW53ODV1N2ZsZnN1ZQ==";
 
     const SERVICES = [
-        {name: "SELAGEM", price: "R$ 110,00"},
+        {name: "SELAGEM PROFISSIONAL", price: "R$ 110,00"},
         {name: "BOTOX", price: "R$ 80,00"},
         {name: "HIDRATAÇÃO", price: "R$ 50,00"},
         {name: "CAUTERIZAÇÃO", price: "R$ 50,00"},
@@ -274,7 +280,7 @@
     // Lógica de Animação de Entrada da Landing Page (Staggered Fade-In)
     document.addEventListener('DOMContentLoaded', () => {
         const mainSections = [
-            document.getElementById("main-header"), // Anima o cabeçalho completo (círculo + banner)
+            document.getElementById("main-header"), 
             document.getElementById("main-actions"),
             document.getElementById("hero-img")
         ];
