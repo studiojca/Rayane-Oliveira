@@ -39,10 +39,15 @@
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.12);
             transition: 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         .btn-premium:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        }
+        .btn-premium:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         .modal-bg {
@@ -74,35 +79,50 @@
         #hero-img{
             border: 6px solid var(--gold);
             border-radius: 1.4rem;
+            object-fit: cover;
+            width: 100%;
             box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
 
-    /* ANIMAÇÕES PREMIUM */
+    /* ---------------------------------------------------------------------- */
+    /* --- ANIMAÇÕES PREMIUM: Staggered Fade-In --- */
+    /* ---------------------------------------------------------------------- */
 
-/* 1. Fade-in + slide suave */
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(15px);
-    animation: fadeUp 0.9s ease-out forwards;
-}
-
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(15px);
     }
-}
 
-/* 4. Glow dourado suave na imagem */
-.glow-gold {
-    animation: goldGlow 4s ease-in-out infinite;
-}
+    .fade-in-up.animate {
+        animation: fadeUp 0.9s ease-out forwards;
+    }
 
-@keyframes goldGlow {
-    0% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
-    50% { box-shadow: 0 8px 25px rgba(215,178,124,0.45); }
-    100% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
-}
+    @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Glow dourado suave na imagem */
+    .glow-gold {
+        animation: goldGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes goldGlow {
+        0% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
+        50% { box-shadow: 0 8px 25px rgba(215,178,124,0.45); }
+        100% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
+    }
+
+    /* ESTILO PARA A NOVA IMAGEM DA LOGO NO CABEÇALHO */
+    #main-logo-image {
+        width: 100%;
+        max-width: 250px; /* Ajuste conforme necessário */
+        height: auto;
+        margin: 0 auto; /* Centraliza */
+        padding-bottom: 1rem; /* Espaçamento abaixo da logo */
+    }
 
 </style>
 </head>
@@ -110,14 +130,16 @@
 
 <div class="w-full max-w-sm">
 
-    <header class="fade-in-up" class="text-center mb-10">
-        <img src="./logo_rayane.png" onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]">
-
-        <h1 class="title-font text-5xl mt-4 font-semibold text-[var(--gold)]">Rayane Oliveira</h1>
-        <p class="tracking-wide text-sm text-[var(--gold)] mt-1">ESPAÇO DE BELEZA</p>
+    <!-- CABEÇALHO (NOVA IMAGEM DA LOGO PRINCIPAL) --><header id="main-header" class="text-center mb-10 fade-in-up">
+        <!-- NOVA LOGO COMO IMAGEM ÚNICA --><img id="main-logo-image" 
+             src="./rayane_oliveira_logo_text.png" 
+             onerror="this.onerror=null;this.src='https://placehold.co/250x100/d7b27c/ffffff?text=RAYANE+OLIVEIRA';"
+             alt="Logo Rayane Oliveira Espaço de Beleza" 
+             title="Rayane Oliveira"
+             loading="lazy" decoding="async">
     </header>
 
-    <main class="fade-in-up" class="grid grid-cols-2 gap-4 mb-10">
+    <!-- BOTÕES PRINCIPAIS --><main id="main-actions" class="grid grid-cols-2 gap-4 mb-10 fade-in-up">
         <a id="whatsapp-link" href="#" target="_blank" class="btn-premium">
             <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i> Agendar
         </a>
@@ -135,11 +157,16 @@
         </a>
     </main>
 
-    <img id="hero-img" class="glow-gold fade-in-up" src="./rayane_photo.jpg" onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" class="w-full object-cover">
+    <!-- FOTO PRINCIPAL --><img id="hero-img" 
+         class="glow-gold fade-in-up" 
+         src="./rayane_photo.jpg" 
+         onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" 
+         alt="Foto profissional de Rayane Oliveira"
+         title="Foto Rayane Oliveira"
+         loading="lazy" decoding="async">
 </div>
 
-<!-- MODAL -->
-<div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
+<!-- MODAL --><div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
     <div class="bg-[var(--card)] w-full max-w-xl p-6 rounded-xl relative shadow-2xl mt-10">
         <button onclick="closePrices()" class="absolute top-4 right-4">
             <i data-lucide="x" class="w-7 h-7 text-black"></i>
@@ -147,7 +174,8 @@
 
         <h2 class="text-center title-font text-4xl font-bold mb-6 text-[var(--gold)]">TABELA DE PREÇOS</h2>
 
-        <div id="services" class="space-y-3"></div>
+        <div id="services" class="space-y-3">
+            <!-- Os itens de serviço serão injetados aqui com animação em cascata --></div>
 
         <div class="text-center mt-8">
             <a id="whatsapp-modal" href="#" target="_blank" class="btn-premium px-8 py-3 inline-flex text-lg">
@@ -180,22 +208,65 @@
         {name: "CAUTERIZAÇÃO", price: "R$ 50,00"},
     ];
 
+    /**
+     * Aplica o efeito de entrada em cascata (staggered fade-in) nos elementos.
+     * @param {NodeListOf<HTMLElement>} elements - Lista de elementos a serem animados.
+     * @param {number} delayStart - Atraso inicial em ms antes do primeiro elemento.
+     * @param {number} delayIncrement - Aumento do atraso para cada elemento subsequente em ms.
+     */
+    function applyStaggeredAnimation(elements, delayStart, delayIncrement) {
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${delayStart + index * delayIncrement}ms`;
+            el.classList.add('animate');
+        });
+    }
+
     function openPrices(){
         const modal = document.getElementById("modal");
-        modal.classList.remove("hidden");
+        const servicesContainer = document.getElementById("services");
 
-        document.getElementById("services").innerHTML = SERVICES.map(s => `
-            <div class='service-item'>
+        // 1. Gera os itens de serviço com a classe de animação
+        servicesContainer.innerHTML = SERVICES.map(s => `
+            <div class='service-item fade-in-up'> 
                 <span>${s.name}</span>
                 <span>${s.price}</span>
             </div>
         `).join('');
+        
+        // 2. Anima os itens de serviço em cascata
+        const serviceItems = servicesContainer.querySelectorAll('.service-item.fade-in-up');
+        // Atraso de 100ms inicial, 80ms entre cada item
+        applyStaggeredAnimation(serviceItems, 100, 80);
+
+        // 3. Exibe o modal
+        modal.classList.remove("hidden");
+        document.body.style.overflow = 'hidden'; // Bloqueia o scroll do corpo
     }
 
     function closePrices(){
         document.getElementById("modal").classList.add("hidden");
+        document.body.style.overflow = ''; // Libera o scroll do corpo
+
+        // Opcional: Remove a animação para garantir que o modal abra limpo na próxima vez
+        document.querySelectorAll('#services .service-item.fade-in-up').forEach(el => {
+            el.classList.remove('animate');
+            el.style.animationDelay = '';
+        });
     }
+
+    // Lógica de Animação de Entrada da Landing Page (Staggered Fade-In)
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainSections = [
+            document.getElementById("main-header"),
+            document.getElementById("main-actions"),
+            document.getElementById("hero-img")
+        ];
+
+        // Animação de entrada da página principal: 200ms de atraso inicial, 150ms entre as seções
+        applyStaggeredAnimation(mainSections, 200, 150);
+    });
 </script>
 
 </body>
 </html>
+
