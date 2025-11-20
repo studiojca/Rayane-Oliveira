@@ -1,138 +1,167 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayane Oliveira - Espaço de Beleza</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><style>
-    :root {
-        --gold: #d7b27c;
-        --gold-light: #f5e7d3;
-        --dark: #1a1a1a;
-        --rose: #e7c2c2;
-        --bg: #f7f3ef;
-        --card: #f2ece6;
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #d7b27c;
+            --gold-light: #f5e7d3;
+            --dark: #1a1a1a;
+            --rose: #e7c2c2;
+            --bg: #f7f3ef;
+            --card: #f2ece6;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+        }
+
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--dark);
+            padding: 0.9rem 1rem;
+            border-radius: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: 0.2s ease;
+        }
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        }
+
+        .modal-bg {
+            background: rgba(0,0,0,0.75);
+        }
+
+        .service-item {
+            background: #222;
+            border-left: 4px solid var(--gold);
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .service-item span:first-child{
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .service-item span:last-child{
+            color: var(--gold-light);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        #hero-img{
+            border: 6px solid var(--gold);
+            border-radius: 1.4rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+    /* ANIMAÇÕES PREMIUM */
+
+/* 1. Fade-in + slide suave */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeUp 0.9s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    body {
-        background: var(--bg);
-        font-family: 'Inter', sans-serif;
-        color: var(--dark);
-    }
+/* 4. Glow dourado suave na imagem */
+.glow-gold {
+    animation: goldGlow 4s ease-in-out infinite;
+}
 
-    .title-font {
-        font-family: 'Playfair Display', serif;
-    }
-
-    .btn-premium {
-        background: linear-gradient(135deg, var(--gold-light), var(--gold));
-        color: var(--dark);
-        padding: 0.9rem 1rem;
-        border-radius: 0.8rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        transition: 0.2s ease;
-    }
-    .btn-premium:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-    }
-
-    .modal-bg {
-        background: rgba(0,0,0,0.75);
-    }
-
-    .service-item {
-        background: #222;
-        border-left: 4px solid var(--gold);
-        padding: 0.9rem 1.2rem;
-        border-radius: 0.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    }
-
-    .service-item span:first-child{
-        color: #fff;
-        font-size: 1.1rem;
-    }
-
-    .service-item span:last-child{
-        color: var(--gold-light);
-        font-size: 1.3rem;
-        font-weight: 700;
-    }
-
-    #hero-img{
-        border: 6px solid var(--gold);
-        border-radius: 1.4rem;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    }
-
-/* ANIMAÇÕES PREMIUM */
-
-/* 1. Fade-in + slide suave */ .fade-in-up { opacity: 0; transform: translateY(15px); animation: fadeUp 0.9s ease-out forwards; }
-
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-/* 4. Glow dourado suave na imagem */ .glow-gold { animation: goldGlow 4s ease-in-out infinite; }
-
-@keyframes goldGlow { 0% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); } 50% { box-shadow: 0 8px 25px rgba(215,178,124,0.45); } 100% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); } }
+@keyframes goldGlow {
+    0% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
+    50% { box-shadow: 0 8px 25px rgba(215,178,124,0.45); }
+    100% { box-shadow: 0 8px 25px rgba(215,178,124,0.15); }
+}
 
 </style>
 </head>
-<body class="min-h-screen p-6 flex justify-center"><div class="w-full max-w-sm"><header class="fade-in-up" class="text-center mb-10">
-    <img src="./logo_rayane.png" onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]">
+<body class="min-h-screen p-6 flex justify-center">
 
-    <h1 class="title-font text-5xl mt-4 font-semibold text-[var(--gold)]">Rayane Oliveira</h1>
-    <p class="tracking-wide text-sm text-[var(--gold)] mt-1">ESPAÇO DE BELEZA</p>
-</header>
+<div class="w-full max-w-sm">
 
-<main class="fade-in-up" class="grid grid-cols-2 gap-4 mb-10">
-    <a id="whatsapp-link" href="#" target="_blank" class="btn-premium">
-        <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i> Agendar
-    </a>
+    <header class="fade-in-up" class="text-center mb-10">
+        <img src="./logo_rayane.png" onerror="this.src='https://placehold.co/140x140/d7b27c/ffffff?text=RO'" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-[var(--gold)]">
 
-    <a id="maps-link" href="#" target="_blank" class="btn-premium">
-        <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Endereço
-    </a>
+        <h1 class="title-font text-5xl mt-4 font-semibold text-[var(--gold)]">Rayane Oliveira</h1>
+        <p class="tracking-wide text-sm text-[var(--gold)] mt-1">ESPAÇO DE BELEZA</p>
+    </header>
 
-    <button onclick="openPrices()" class="btn-premium">
-        <i data-lucide="book-open-text" class="w-5 h-5 mr-2"></i> Preços
-    </button>
+    <main class="fade-in-up" class="grid grid-cols-2 gap-4 mb-10">
+        <a id="whatsapp-link" href="#" target="_blank" class="btn-premium">
+            <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i> Agendar
+        </a>
 
-    <a id="instagram-link" href="#" target="_blank" class="btn-premium">
-        <i data-lucide="instagram" class="w-5 h-5 mr-2"></i> Instagram
-    </a>
-</main>
+        <a id="maps-link" href="#" target="_blank" class="btn-premium">
+            <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Endereço
+        </a>
 
-<img id="hero-img" class="glow-gold fade-in-up" src="./rayane_photo.jpg" onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" class="w-full object-cover">
+        <button onclick="openPrices()" class="btn-premium">
+            <i data-lucide="book-open-text" class="w-5 h-5 mr-2"></i> Preços
+        </button>
 
-</div><!-- MODAL --><div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
+        <a id="instagram-link" href="#" target="_blank" class="btn-premium">
+            <i data-lucide="instagram" class="w-5 h-5 mr-2"></i> Instagram
+        </a>
+    </main>
+
+    <img id="hero-img" class="glow-gold fade-in-up" src="./rayane_photo.jpg" onerror="this.src='https://placehold.co/600x400/d7b27c/fff?text=RAYANE'" class="w-full object-cover">
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="hidden fixed inset-0 modal-bg flex justify-center items-start p-4 overflow-y-auto z-50">
     <div class="bg-[var(--card)] w-full max-w-xl p-6 rounded-xl relative shadow-2xl mt-10">
         <button onclick="closePrices()" class="absolute top-4 right-4">
             <i data-lucide="x" class="w-7 h-7 text-black"></i>
-        </button><h2 class="text-center title-font text-4xl font-bold mb-6 text-[var(--gold)]">TABELA DE PREÇOS</h2>
+        </button>
 
-    <div id="services" class="space-y-3"></div>
+        <h2 class="text-center title-font text-4xl font-bold mb-6 text-[var(--gold)]">TABELA DE PREÇOS</h2>
 
-    <div class="text-center mt-8">
-        <a id="whatsapp-modal" href="#" target="_blank" class="btn-premium px-8 py-3 inline-flex text-lg">
-            <i data-lucide="calendar-check" class="w-6 h-6 mr-2"></i> Agendar Agora
-        </a>
-    </div>
+        <div id="services" class="space-y-3"></div>
 
-    <div class="text-center mt-6">
-        <button onclick="closePrices()" class="btn-premium px-8 py-2">Fechar</button>
+        <div class="text-center mt-8">
+            <a id="whatsapp-modal" href="#" target="_blank" class="btn-premium px-8 py-3 inline-flex text-lg">
+                <i data-lucide="calendar-check" class="w-6 h-6 mr-2"></i> Agendar Agora
+            </a>
+        </div>
+
+        <div class="text-center mt-6">
+            <button onclick="closePrices()" class="btn-premium px-8 py-2">Fechar</button>
+        </div>
     </div>
 </div>
 
-</div><script>
+<script>
     lucide.createIcons();
 
     const whatsapp = "5598985179156";
@@ -166,5 +195,7 @@
     function closePrices(){
         document.getElementById("modal").classList.add("hidden");
     }
-</script></body>
+</script>
+
+</body>
 </html>
