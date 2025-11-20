@@ -1,439 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayane Oliveira - Espaço de Beleza</title>
-    
-    <!-- Carrega o Tailwind CSS para um design moderno e responsivo -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Ícones Lucide -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* ---------------------------------------------------------------------- */
-        /* --- 🎨 PALETA DE CORES: ROSE GOLD & BEGE/PÊSSEGO CLARO (FINAL) --- */
-        /* ---------------------------------------------------------------------- */
-        :root {
-            /* Fundo principal claro (Rosa Pêssego / Rosa Bege) */
-            --bg-light: #FAF0E6; 
-            /* Fundo sutil para cards de serviço e modal */
-            --bg-card: #F5EBE0; 
-            --text-dark: #333333; /* Cor do texto principal (Preto/Grafite) */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rayane Oliveira – Lash Designer</title>
 
-            /* Cor de Destaque Rose Gold Claro (Acento) */
-            --primary-accent: #CC737A; 
+<!-- Tipografia Premium -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-            /* Gradiente de Destaque para Botões (Efeito Metálico Rose Gold) */
-            --gradient-start: #F7CAC9; /* Rosa Claro/Pêssego */
-            --gradient-end: #CC737A; /* Rosa Mais Escuro/Cobre */
-            
-            /* Cor do texto do botão (preto/grafite, para contraste no Rose Gold) */
-            --btn-text-color: #333333;
-            
-            /* --- CORES PARA DESTAQUE DO ITEM DE PREÇO (MODAL) --- */
-            --bg-item-dark: #442225; /* Fundo escuro para realce */
-            --text-item-light: #F8F8F8; /* Texto claro para o nome do serviço */
-            --price-highlight: #F7CAC9; /* Rose Gold mais claro/brilhante para o preço */
-        }
+<style>
+/* ---------- VARIÁVEIS DE TEMA ---------- */
+:root {
+    --rose-light: #f5e0e7;
+    --rose-normal: #e3b1bd;
+    --rose-dark: #c06c78;
+    --text-dark: #2d2a2a;
+    --text-light: #ffffff;
+    --shadow: 0 4px 18px rgba(0,0,0,0.12);
+    --radius: 18px;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light); 
-            color: var(--text-dark); 
-        }
-        
-        /* ---------------------------------------------------------------------- */
-        /* --- NOVO ESTILO DE BOTÃO COMPACTO (REFERÊNCIA STUDIO LS) --- */
-        /* ---------------------------------------------------------------------- */
-        .action-button {
-            /* Aplica o gradiente Rose Gold */
-            background: linear-gradient(145deg, var(--gradient-start), var(--gradient-end));
-            color: var(--btn-text-color); 
-            transition: all 0.2s ease-in-out; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
-            font-weight: 600; 
-            -webkit-tap-highlight-color: transparent;
-            /* Estilo dos botões no design Studio LS */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 1rem; /* Padding ajustado */
-            border-radius: 0.75rem; /* Menos redondo que o anterior, mais moderno/caixa arredondada */
-            text-transform: uppercase;
-        }
+/* ---------- ESTILOS GERAIS ---------- */
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--rose-light);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    text-align: center;
+}
 
-        .action-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-        
-        .action-button:active {
-            transform: scale(0.98); 
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.15);
-        }
+/* Container principal */
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 25px;
+}
 
-        /* Animação de entrada da Landing Page */
-        .initial-hidden {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .initial-visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 1s ease-out, transform 0.8s ease-out;
-        }
-        
-        /* Estilo para a imagem principal */
-        .image-container {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            overflow: hidden;
-            border-radius: 1.5rem; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
-            /* Borda Rose Gold fina */
-            border: 4px solid var(--primary-accent); 
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+/* Nome principal */
+.main-name {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 15px;
+}
 
-        /* Estilo para o item de PREÇO (SERVIÇOS) - ALTO CONTRASTE */
-        .service-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            background-color: var(--bg-item-dark); 
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--primary-accent);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); 
-        }
-        
-        /* --- ANIMAÇÃO PARA OS ITENS DO MODAL --- */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Imagem */
+.profile-box {
+    background: white;
+    padding: 10px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--rose-normal);
+    margin-top: 20px;
+}
 
-        .fade-in-up {
-            opacity: 0;
-        }
-        
-        .fade-in-up.animate {
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-        
-        /* Fonte mais elegante para o nome principal - MANTIDA */
-        #main-name {
-            font-family: 'Inter', cursive; 
-            font-weight: 600; 
-            letter-spacing: 0.05em;
-            /* MANTIDO: Rose Gold para o Nome */
-            color: var(--primary-accent);
-        }
+.profile-box img {
+    width: 100%;
+    border-radius: var(--radius);
+}
 
-        /* LOGO CÍRCULO - MANTIDO */
-        #logo-container {
-            border-radius: 50%; 
-            background-color: var(--bg-light); 
-            border: 4px solid var(--primary-accent); 
-            padding: 4px;
-            display: inline-block;
-            box-shadow: 0 0 10px rgba(204, 115, 122, 0.5); 
-            width: 136px; 
-            height: 136px; 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-        }
-        
-        #main-logo {
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%; 
-            object-fit: cover; 
-        }
-        
-        /* Cor de fundo do Modal */
-        #prices-modal > div {
-            background-color: var(--bg-card); 
-            color: var(--text-dark);
-        }
-        
-        /* Novo layout dos botões principais */
-        #main-actions {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 colunas */
-            gap: 1rem; /* Espaçamento de 1rem entre os botões */
-        }
-        
-        /* Estilo para o título (ESPAÇO DE BELEZA) */
-        #subtitle {
-            font-size: 0.875rem; /* text-sm */
-            font-weight: 300; /* font-light */
-            text-transform: uppercase;
-            margin-top: 0.25rem;
-            letter-spacing: 0.05em;
-            color: var(--primary-accent);
-        }
-        
-        /* Cor dos ícones nos botões */
-        .icon-color {
-            color: var(--btn-text-color);
-        }
+/* Botões */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 30px;
+}
 
-    </style>
+.button {
+    padding: 14px;
+    background: linear-gradient(145deg, var(--rose-normal), var(--rose-dark));
+    color: var(--text-light);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: var(--shadow);
+}
+
+.button:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.08);
+}
+
+/* ---------- MODAL ---------- */
+.modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 420px;
+    width: 100%;
+    text-align: left;
+}
+
+.modal h2 {
+    font-family: "Playfair Display", serif;
+    margin: 0 0 10px 0;
+}
+
+.price-item {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Fechar */
+.close-btn {
+    background: var(--rose-dark);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+}
+.close-btn:hover {
+    filter: brightness(1.1);
+}
+</style>
 </head>
-<body class="min-h-screen flex items-start justify-center p-6 sm:p-8">
 
-    <!-- Container Principal do Aplicativo/Landing Page -->
-    <div id="main-container" class="w-full max-w-sm mx-auto pt-10 pb-8 initial-hidden"> 
-        
-        <!-- 1. Cabeçalho e Logo -->
-        <header class="text-center mb-12">
-            
-            <!-- LOGO: Rayane Oliveira -->
-            <div class="mb-3 mx-auto" id="logo-container">
-                <!-- Recomendação: usar a logo no formato PNG (fundo transparente) -->
-                <img id="main-logo" src="./logo_rayane.png" alt="Logo Rayane Oliveira" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/128x128/CC737A/F5EBE0?text=RO';"
-                     title="Logo Rayane Oliveira"
-                     loading="lazy" decoding="async">
-            </div>
-            
-            <!-- Nome com a cor de destaque Rose Gold -->
-            <h1 id="main-name" class="text-5xl font-serif"> 
-                Rayane Oliveira
-            </h1>
-            <!-- Subtítulo: MANTIDO "ESPAÇO DE BELEZA" -->
-            <p id="subtitle">
-                ESPAÇO DE BELEZA
-            </p>
-        </header>
+<body>
 
-        <!-- 2. Seção de Botões de Ação (Ações principais) -->
-        <!-- NOVO LAYOUT DE GRID (2 COLUNAS) -->
-        <main id="main-actions" class="mb-8"> 
+<div class="container">
+    <h1 class="main-name">Rayane Oliveira</h1>
 
-            <!-- Botão 1: AGENDAR HORÁRIO (WhatsApp) -->
-            <a id="whatsapp-link" href="#" target="_blank" class="action-button">
-                <i data-lucide="calendar-check" class="w-5 h-5 mr-3 icon-color"></i>
-                AGENDAR
-            </a>
-
-            <!-- Botão 2: COMO CHEGAR (Google Maps) -->
-            <a id="maps-link" href="#" target="_blank" class="action-button">
-                <i data-lucide="map-pin" class="w-5 h-5 mr-3 icon-color"></i>
-                ENDEREÇO
-            </a>
-
-            <!-- Botão 3: TABELA DE PREÇOS (Abre Modal/Nova Seção) - CORRIGIDO -->
-            <button onclick="openPricesModal()" class="action-button">
-                <i data-lucide="book-open-text" class="w-5 h-5 mr-3 icon-color"></i>
-                PREÇOS
-            </button>
-
-            <!-- Botão 4: INSTAGRAM -->
-            <a id="instagram-link" href="#" target="_blank" class="action-button">
-                <i data-lucide="instagram" class="w-5 h-5 mr-3 icon-color"></i>
-                INSTAGRAM
-            </a>
-
-        </main>
-        
-        <!-- 3. Imagem da Cliente (Rayane Oliveira) -->
-        <section class="mt-8">
-            <div class="image-container">
-                <!-- Usando a nova foto enviada pela cliente -->
-                <img src="./rayane_photo.jpg" 
-                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/F5EBE0/CC737A?text=FOTO+RAYANE';"
-                     alt="Rayane Oliveira, profissional de beleza."
-                     title="Foto Rayane Oliveira"
-                     loading="lazy" decoding="async"> 
-            </div>
-        </section>
-
+    <div class="profile-box">
+        <img src="imagem.png" alt="Rayane Oliveira">
     </div>
 
-    <!-- Modal/Seção de Tabela de Preços e Produtos -->
-    <div id="prices-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-start justify-center p-4 overflow-y-auto">
-        
-        <!-- Cor de fundo do modal ajustada para a cor do Card -->
-        <div class="w-full max-w-xl mx-auto my-8 p-6 sm:p-8 rounded-xl shadow-2xl relative" style="background-color: var(--bg-card); color: var(--text-dark);">
-            <!-- Botão de Fechar -->
-            <button onclick="closePricesModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black transition duration-200">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
+    <div class="actions">
+        <a href="https://linktr.ee/rayaneoliverlashedesign" target="_blank">
+            <button class="button">Agendar</button>
+        </a>
 
-            <h2 class="text-4xl font-bold mb-8 text-center" style="color: var(--primary-accent);">
-                TABELA DE VALORES
-            </h2>
-
-            <!-- CONTEÚDO DA TABELA DE PREÇOS -->
-            <div id="prices-content" class="space-y-10">
-                
-                <!-- Seção Única: Serviços (Lista lateral) -->
-                <section>
-                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(204, 115, 122, 0.4);">
-                        <i data-lucide="scissors" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-accent);"></i>
-                        TRATAMENTOS CAPILARES
-                    </h3>
-                    <div class="space-y-3" id="services-list">
-                        <!-- Itens de serviço serão gerados aqui via JavaScript -->
-                    </div>
-                </section>
-                
-                <!-- BOTÃO DE AGENDAMENTO (CHAMADA PARA AÇÃO) -->
-                <div class="text-center pt-2 pb-6">
-                    <!-- Linha divisória antes do CTA -->
-                    <hr class="border-gray-300 mb-6">
-                    <a id="whatsapp-link-modal" href="#" target="_blank"
-                        class="action-button inline-flex px-8 py-4 text-lg">
-                        <i data-lucide="calendar-check" class="w-6 h-6 mr-3 icon-color"></i>
-                        AGENDAR AGORA
-                    </a>
-                </div>
-                <!-- FIM DO BOTÃO -->
-                
-            </div>
-            <!-- Fim do Conteúdo de Preços -->
-
-            <div class="text-center pt-10">
-                <button onclick="closePricesModal()" 
-                    class="action-button px-8 py-3 text-base">
-                    Fechar Tabela
-                </button>
-            </div>
-
-        </div>
+        <button class="button" onclick="openModal()">Tabelas de Preços</button>
     </div>
+</div>
 
-    <script>
-        // Inicializa os ícones Lucide
-        lucide.createIcons();
+<!-- ---------- MODAL ---------- -->
+<div class="modal-bg" id="modal-bg">
+    <div class="modal">
+        <h2>Valores dos Procedimentos</h2>
 
-        // ----------------------------------------------------------------------
-        //  *** CONFIGURAÇÃO DE DADOS DA RAYANE OLIVEIRA - FINAL ***
-        // ----------------------------------------------------------------------
-        
-        // 1. DADOS DE CONTATO E REDES SOCIAIS
-        const barbershopName = "Rayane Oliveira - Espaço de Beleza";
-        // O número deve ser o completo: Código do País (55) + DDD (98) + Número (85179156)
-        const whatsappNumber = "5598985179156"; 
-        const mapLink = "https://maps.app.goo.gl/no8RFBRRPPncf5aN9?g_st=ipc"; 
-        const instagramLink = "https://www.instagram.com/rayanne.oliveira9?igsh=MW53ODV1N2ZsZnN1ZQ=="; 
+        <div class="price-item"><span>Extensão de Cílios</span> <span>R$70,00</span></div>
+        <div class="price-item"><span>Limpeza de Cílios</span> <span>R$10,00</span></div>
+        <div class="price-item"><span>Remoção de Cílios</span> <span>R$15,00</span></div>
+        <div class="price-item"><span>Sobrancelha + Henna</span> <span>R$25,00</span></div>
+        <div class="price-item"><span>Sobrancelha + Henna + Cílios</span> <span>R$30,00</span></div>
 
-        // 2. TABELA DE SERVIÇOS E PREÇOS 
-        const SERVICES_DATA = [
-            { name: "SELAGEM", price: "R$ 110,00" },
-            { name: "BOTOX", price: "R$ 80,00" },
-            { name: "HIDRATAÇÃO", price: "R$ 50,00" },
-            { name: "CAUTERIZAÇÃO", price: "R$ 50,00" },
-        ];
+        <button class="close-btn" onclick="closeModal()">Fechar</button>
+    </div>
+</div>
 
-        // ----------------------------------------------------------------------
-        // LÓGICA DE GERAÇÃO E ANIMAÇÃO
-        // ----------------------------------------------------------------------
+<!-- ---------- JAVASCRIPT ---------- -->
+<script>
+function openModal() {
+    document.getElementById("modal-bg").style.display = "flex";
+}
 
-        const pricesModal = document.getElementById('prices-modal');
+function closeModal() {
+    document.getElementById("modal-bg").style.display = "none";
+}
+</script>
 
-        // Função para gerar o HTML de um item de SERVIÇO (lista)
-        function generateServiceItem(item) {
-            // Pega as novas cores para o item
-            const priceHighlight = getComputedStyle(document.documentElement).getPropertyValue('--price-highlight').trim();
-            const textItemLight = getComputedStyle(document.documentElement).getPropertyValue('--text-item-light').trim();
-
-            // Adicionando a classe de animação 'fade-in-up'
-            // O nome do serviço agora tem cor clara, e o preço tem a cor Rose Gold mais brilhante
-            return `
-                <div class="service-item fade-in-up">
-                    <span class="text-lg font-medium" style="color: ${textItemLight};">${item.name}</span>
-                    <span class="text-xl font-bold whitespace-nowrap" style="color: ${priceHighlight};">${item.price}</span>
-                </div>
-            `;
-        }
-        
-        // Função para aplicar a animação em cascata (item por item)
-        function animateItems(listId) {
-            const items = document.querySelectorAll(`#${listId} .fade-in-up`);
-            items.forEach((item, index) => {
-                // Aplica um atraso crescente (50ms por item)
-                item.style.animationDelay = `${index * 50}ms`;
-                item.classList.add('animate');
-            });
-        }
-
-
-        // Função para preencher a lista de serviços
-        function renderPrices() {
-            // Apenas a lista de serviços é renderizada, pois as outras listas estão vazias
-            document.getElementById('services-list').innerHTML = SERVICES_DATA.map(generateServiceItem).join('');
-            
-            // Chama a animação para a lista de serviços
-            animateItems('services-list');
-        }
-        
-        // Lógica do Modal (Abrir/Fechar)
-        function openPricesModal() {
-            pricesModal.classList.remove('hidden');
-            pricesModal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
-            
-            // Renderiza e anima quando o modal é aberto
-            renderPrices(); 
-        }
-
-        function closePricesModal() {
-            pricesModal.classList.add('hidden');
-            pricesModal.classList.remove('flex');
-            document.body.style.overflow = ''; 
-            
-            // Remove a classe de animação para garantir que o modal abra limpo na próxima vez
-            document.querySelectorAll('.fade-in-up').forEach(item => {
-                item.classList.remove('animate');
-                item.style.animationDelay = '';
-            });
-        }
-
-        // Lógica de Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainContainer = document.getElementById('main-container');
-
-            // Animação de entrada da Landing Page
-            setTimeout(() => {
-                mainContainer.classList.remove('initial-hidden');
-                mainContainer.classList.add('initial-visible');
-            }, 50);
-
-            // Mensagem pré-preenchida
-            const prefilledMessage = 
-                `Olá Rayane Oliveira! Gostaria de agendar um horário para [especificar o serviço].`;
-
-            // CRIAÇÃO DA URL FINAL
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prefilledMessage)}`;
-
-            // Atualização de todos os links
-            document.getElementById('whatsapp-link').href = whatsappUrl;
-            document.getElementById('maps-link').href = mapLink; 
-            document.getElementById('instagram-link').href = instagramLink;
-            
-            const whatsappLinkModal = document.getElementById('whatsapp-link-modal');
-            if (whatsappLinkModal) {
-                whatsappLinkModal.href = whatsappUrl; 
-            }
-        });
-
-    </script>
 </body>
 </html>
-
